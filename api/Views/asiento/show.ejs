@@ -1,0 +1,39 @@
+<h1>Show asiento</h1>
+
+	<p>
+		<strong>createdAt:</strong>
+		<%= element.createdAt %>
+	</p>
+	<p>
+		<strong>updatedAt:</strong>
+		<%= element.updatedAt %>
+	</p>
+	<p>
+		<strong>id:</strong>
+		<%= element.id %>
+	</p>
+	<p>
+		<strong>fecha:</strong>
+		<%= element.fecha %>
+	</p>
+	<p>
+		<strong>detalle:</strong>
+		<%= element.detalle %>
+	</p>
+	<p>
+		<strong>ref:</strong>
+		<%= element.ref %>
+	</p>
+	<p>
+		<strong>debe:</strong>
+		<%= element.debe %>
+	</p>
+	<p>
+		<strong>haber:</strong>
+		<%= element.haber %>
+	</p>
+
+<br>
+<a href="/asiento/edit/<%= element.id %>">Edit</a>
+<a href="/asiento/create">New</a>
+<a href="/asiento">Back</a>

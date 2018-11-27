@@ -1,0 +1,36 @@
+<div class="">
+  <h1>New plandecuenta</h1>
+
+  <div class="body">
+    <form class="" action="/plandecuenta/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">updatedAt</label>
+          <input type="number" name="updatedAt" value="<%= element.updatedAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+        <div class="">
+          <label for="">codigo</label>
+          <input type="" name="codigo" value="<%= element.codigo %>" required="false">
+        </div>
+        <div class="">
+          <label for="">idEmpresa</label>
+          <input type="number" name="idEmpresa" value="<%= element.idEmpresa %>" required="false">
+        </div>
+      <button type="submit">Update plandecuenta</button>
+    </form>
+    <br />
+    <a href="/plandecuenta">Index</a>
+  </div>
+</div>

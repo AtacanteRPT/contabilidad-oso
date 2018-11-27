@@ -1,0 +1,136 @@
+<div class="container">
+  <h3>
+    <%= libroDiario.detalle%>
+  </h3>
+  libroDiario.idPlanDeCuenta
+  <%= libroDiario.idPlanDeCuenta %>
+    libroDiario.id
+    <%= libroDiario.id %>
+
+      <div class="row">
+        <div class="col s12 m12">
+          <form action="/asiento/crear" method="POST">
+            <h6 class="center">Nuevo Asiento</h6>
+            <input name="idLibroDiario" value="<%= libroDiario.id %>" hidden="true" required>
+            <div class="row">
+              <div class="col s12 m3">
+                <select name="idCuenta">
+                  <option value="" disabled selected>Tipo Cuenta</option>
+                  <% cuentas.forEach((cuenta,i)=>{%>
+                    <option value="<%= cuenta.id%>">
+                      <%= cuenta.nombre%>
+                    </option>
+                    <% })%>
+                </select>
+
+              </div>
+              <div class="col s6 m3">
+                <input type="number" name="debe" step="0.01" placeholder="0.00" value="0.00">
+              </div>
+              <div class="col s6 m3">
+                <input type="number" name="haber" step="0.01" placeholder="0.00" value="0.00">
+              </div>
+              <div class="col s12 m3 ">
+
+                <input class="btn-small" type="submit" value="adicionar">
+              </div>
+            </div>
+          </form>
+          <div class="divider">
+
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <table>
+        <thead>
+          <tr>
+            <th>Codigo</th>
+            <th>Nombre</th>
+            <th>DEBE</th>
+            <th>HABER</th>
+            <!-- <th>Cuenta</th> -->
+            <!-- <th>Código</th> -->
+            <!-- <th>DEBE</th> -->
+            <!-- <th>HABER</th> -->
+            <th colspan="2"></th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <% asientos.forEach((asiento,i) =>{%>
+            <tr>
+              <td>
+                <%= asiento.idCuenta.codigo%>
+              </td>
+              <td>
+                <%= asiento.idCuenta.nombre%>
+              </td>
+              <td>
+                <%= asiento.debe%>
+              </td>
+              <td>
+                <%= asiento.haber%>
+              </td>
+              <td>
+                <td>
+                  <a href="/asiento/delete/<%= asiento.id %>">
+                    <i class="small material-icons circle ">delete</i>
+                  </a>
+                </td>
+              </td>
+              <td>
+                <a href="/asiento/edit/<%= asiento.id %>">
+                  <i class="small material-icons circle ">edit</i>
+                </a>
+              </td>
+            </tr>
+            <%})%>
+            <tr class="amber accent-1">
+                <% var sumaDebe = 0%>
+                <% var sumaHaber = 0%>
+
+                <% asientos.forEach((asiento,i) =>{  %>
+                <% sumaDebe = sumaDebe + asiento.debe%>
+                <% sumaHaber = sumaHaber + asiento.haber%>
+                <%})%>
+              <td></td>
+              <td>TOTAL</td>
+              <td><%= sumaDebe %></td>
+              <td><%= sumaHaber %></td>
+              <td colspan="3"></td>
+            </tr>
+        </tbody>
+      </table>
+
+    
+
+        <% if(sumaDebe != sumaHaber){%>
+
+        <div class="row">
+          <div class="col s12 m12">
+            <div class="card-panel red light-3">
+              <span >
+                ¡EL DEBE Y HABER NO SON IGUALES!
+              </span>
+            </div>
+          </div>
+        </div>
+        <% } else {%>
+
+        <div class="row">
+            <div class="col s12 m12">
+              <div class="card-panel green light-3">
+                <span >
+                  TODO POSITIVO
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <% }%>
+      <!-- }}}}}}}}}}}}}}}}}}}} -->
+</div>

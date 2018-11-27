@@ -1,0 +1,225 @@
+<h5>LibroDiario</h5>
+
+<div class="container">
+
+	<div class="row">
+		<div class="col s12 m12">
+
+			<form action="/librodiario/planCuenta" method="POST" id="carform">
+				<!-- Firstname:<input type="text" name="fname"> -->
+				<div class="row">
+					<div class="col s6 m8">
+						<select class="browser-default" name="id" form="carform">
+							<% empresas.forEach((empresa,i)=>{%>
+								<optgroup label="	<%= empresa.nombre%>">
+
+									<% empresa.plandecuentas.forEach((plancuenta,i)=>{%>
+										<option value="<%= plancuenta.id%>">
+											<%= plancuenta.id%> -
+												<%= plancuenta.nombre%>
+										</option>
+										<% })%>
+								</optgroup>
+								<% })%>
+						</select>
+					</div>
+					<div class="col s6 m4">
+						<input class="btn" type="submit" value="Escoger Plan">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="col s12 m4">
+
+			<!-- <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Nueva Asiento</a> -->
+		</div>
+	</div>
+
+
+
+
+	<!-- Modal Structure {{{{{{{{{{{{{{{{{{{{{-->
+	<div id="modal1" class="modal">
+		<form action="/asiento/crear" method="POST" id="idForm_cuenta">
+			<div class="modal-content">
+				<h4>Nuevo Asiento</h4>
+
+				<input name="idPlanDeCuenta" value="<%= idPlanDeCuenta %>" hidden="true" required>
+				<div class="row">
+					<div class="col12 m6">
+						<input type="text" name="detalle" placeholder="Detalle">
+					</div>
+					<div class="col12 m6">
+						<input type="date" name="fecha" placeholder="Fecha">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col12 m4">
+						<div class="input-field">
+							<select name="idCuenta" form="idForm_cuenta">
+								<option value="" disabled selected>Tipo Cuenta</option>
+
+								<% cuentas.forEach((cuenta,i)=>{%>
+									<option value="<%= cuenta.id%>">
+										<%= cuenta.nombre%>
+									</option>
+									<% })%>
+
+							</select>
+							<label>Cuenta</label>
+						</div>
+					</div>
+					<div class="col12 m4">
+						<input type="number" name="debe" step="0.01" placeholder="0.00">
+					</div>
+					<div class="col12 m4">
+						<input type="numer" name="haber" step="0.01" placeholder="0.00">
+					</div>
+				</div>
+
+
+			</div>
+			<div class="modal-footer">
+				<input class="modal-close btn-flat" type="submit" value="CREAR">
+		</form>
+		<!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+		</div>
+	</div>
+
+	<!-- }}}}}}}}}}}}}}}}}}}} -->
+
+
+
+</div>
+
+<!-- Modal Structure {{{{{{{{{{{{{{{{{{{{{-->
+<div class="row">
+	<div class="col s4">
+
+		<a class="waves-effect waves-light btn modal-trigger" href="#modal2">Nuevo Día</a>
+	</div>
+	<div class="col s4">
+
+		<a class="waves-effect waves-light btn-small">
+			<i class="material-icons right">picture_as_pdf
+			</i>PDF</a>
+			<a class="waves-effect waves-light btn-small">
+					<i class="material-icons right">file_download
+					</i>Excel</a>
+	</div>
+
+</div>
+
+<div id="modal2" class="modal">
+	<form action="/Librodiario/crear" method="POST" id="idForm_cuenta2">
+		<div class="modal-content">
+			<h4>Nuevo Dia</h4>
+
+			<input name="idPlanDeCuenta" value="<%= idPlanDeCuenta %>" hidden="true" required>
+			<div class="row">
+				<div class="col12 m6">
+					<input type="text" name="detalle" placeholder="Detalle">
+				</div>
+				<div class="col12 m6">
+					<input type="date" name="fecha" placeholder="Fecha">
+				</div>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<input class="modal-close btn-flat" type="submit" value="CREAR">
+	</form>
+	<!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+	</div>
+</div>
+
+<!-- }}}}}}}}}}}}}}}}}}}} -->
+<table class="striped">
+	<thead>
+		<tr>
+			<th colspan="2">Fecha</th>
+			<th>Detalle</th>
+			<th>Código</th>
+			<th>Cuenta</th>
+			<th>DEBE</th>
+			<th>HABER</th>
+			<th </th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<% librosDiario.forEach((libroDiario,i) =>{%>
+			<%  var fecha = new Date(libroDiario.fecha)%>
+				<tr>
+					<td colspan="2">
+						<%= fecha.toLocaleDateString() %>
+					</td>
+
+					<td>
+						<%= libroDiario.detalle %>
+					</td>
+					<td colspan="3"></td>
+					<td>
+						<a href="/librodiario/delete/<%= libroDiario.id %>">
+							<i class="material-icons circle ">delete</i>
+						</a>
+
+					</td>
+					<td>
+						<a href="/librodiario/edit/<%= libroDiario.id %>">
+							<i class="material-icons circle ">edit</i>
+						</a>
+					</td>
+
+				</tr>
+				<% libroDiario.asientos.forEach((asiento,j)=>{%>
+					<tr>
+						<td colspan="3"></td>
+						<td>
+							<%= asiento.idCuenta.codigo%>
+						</td>
+						<td>
+							<%= asiento.idCuenta.nombre%>
+						</td>
+						<td>
+							<%= asiento.debe%>
+						</td>
+						<td>
+							<%= asiento.haber%>
+						</td>
+
+						<td>
+							<!-- <a href="/librodiario/edit/<%= libroDiario.id %>">
+								<i class="small material-icons circle ">edit</i>
+							</a> -->
+						</td>
+					</tr>
+					<%})%>
+						<% })%>
+							<tr class=" blue-grey lighten-2">
+
+								<% var sumaDebe = 0%>
+									<% var sumaHaber = 0%>
+										<% librosDiario.forEach((libroDiario,i) =>{%>
+											<% libroDiario.asientos.forEach((asiento,j) =>{  %>
+												<% sumaDebe = sumaDebe + asiento.debe%>
+													<% sumaHaber = sumaHaber + asiento.haber%>
+														<%})%>
+															<%})%>
+																<td colspan="3"></td>
+																<td></td>
+																<td>TOTAL </td>
+																<td>
+																	<%= sumaDebe %>
+																</td>
+																<td>
+																	<%= sumaHaber%>
+																</td>
+																<td></td>
+							</tr>
+	</tbody>
+</table>
+
+
+
+<!--  -->
+<!-- <a href="/LibroDiario/create">New</a> -->

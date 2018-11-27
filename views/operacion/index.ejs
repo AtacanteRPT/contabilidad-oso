@@ -1,0 +1,74 @@
+<h1>operacion</h1>
+
+
+<% if (result.length == 0) { %>
+  <h4>
+    0 operacion
+  </h4>
+  <% } else { %>
+    <table>
+      <thead>
+        <th>#</th>
+
+        <th>id</th>
+        <th>nombre</th>
+
+        <th>created at</th>
+        <th>updated at</th>
+        <th colspan="3"></th>
+      </thead>
+
+      <tbody>
+        <% result.forEach((item, i) => { %>
+          <tr>
+            <td>
+              <%= (i + 1) %>
+            </td>
+
+
+            <td>
+              <%= item.id %>
+            </td>
+            <td>
+              <%= item.nombre %>
+            </td>
+            <td>
+              <%= item.createdAt %>
+            </td>
+            <td>
+              <%= item.updatedAt %>
+            </td>
+            <td>
+              <a href="/operacion/show/<%= item.id %>">Show</a>
+            </td>
+            <td>
+              <a href="/operacion/delete/<%= item.id %>">Delete</a>
+            </td>
+            <td>
+              <a href="/operacion/edit/<%= item.id %>">Edit</a>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+
+    <% } %>
+
+      <br>
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">CREAR</a>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <form action="/operacion/crear" method="POST">
+          <div class="modal-content">
+            <h4>Crear Operación</h4>
+                  <input name="idUsuario" value="<%= req.user.id %>" hidden="true" required>
+
+            <input type="text" name="nombre" placeholder="nombre">
+          </div>
+          <div class="modal-footer">
+            <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="CREAR">
+        </form>
+        <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+        </div>
+      </div>

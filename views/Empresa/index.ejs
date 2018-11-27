@@ -1,0 +1,77 @@
+<h1>Empresa</h1>
+
+
+<% if (result.length == 0) { %>
+  <h4>
+    0 Empresa
+  </h4>
+  <% } else { %>
+    <table class="highlight">
+      <thead>
+        <th>#</th>
+        <th>id</th>
+        <th>nombre</th>
+        <th>nit</th>
+
+        <th>created at</th>
+        <th>updated at</th>
+        <th colspan="3"></th>
+      </thead>
+
+      <tbody>
+        <% result.forEach((item, i) => { %>
+          <tr>
+            <td>
+              <%= (i + 1) %>
+            </td>
+            <td>
+              <%= item.id %>
+            </td>
+            <td>
+              <%= item.nombre %>
+            </td>
+            <td>
+              <%= item.nit %>
+            </td>
+            <td>
+              <%= item.createdAt %>
+            </td>
+            <td>
+              <%= item.updatedAt %>
+            </td>
+            <td>
+              <a href="/Empresa/show/<%= item.id %>"> VER</a>
+            </td>
+            <td>
+              <a href="/Empresa/delete/<%= item.id %>"> <i class="small material-icons circle ">delete</i></a>
+            </td>
+            <td>
+              <a href="/Empresa/edit/<%= item.id %>"> <i class="small material-icons circle ">edit</i></a>
+            </td>
+          </tr>
+          <% }) %>
+      </tbody>
+    </table>
+
+    <% } %>
+
+      <br>
+      <!-- Modal Trigger -->
+      <!-- <button data-target="modal1" class="btn modal-trigger">Modal</button> -->
+      <a class="waves-effect waves-light btn modal-trigger" href="#modal1">CREAR</a>
+
+      <!-- Modal Structure -->
+      <div id="modal1" class="modal">
+        <form action="/empresa/crear" method="POST">
+          <div class="modal-content">
+            <h4>Crear Empresa</h4>
+            <input type="text" name="nombre" placeholder="nombre">
+            <input type="number" name="nit" placeholder="nit">
+          </div>
+          <div class="modal-footer">
+            <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="CREAR">
+        </form>
+        <!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
+        </div>
+      </div>
+      <!-- <a href="/Empresa/create">New</a> -->

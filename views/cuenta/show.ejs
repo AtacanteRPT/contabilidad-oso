@@ -1,0 +1,31 @@
+<h1>Show cuenta</h1>
+
+	<p>
+		<strong>createdAt:</strong>
+		<%= element.createdAt %>
+	</p>
+	<p>
+		<strong>updatedAt:</strong>
+		<%= element.updatedAt %>
+	</p>
+	<p>
+		<strong>id:</strong>
+		<%= element.id %>
+	</p>
+	<p>
+		<strong>nombre:</strong>
+		<%= element.nombre %>
+	</p>
+	<p>
+		<strong>codigo:</strong>
+		<%= element.codigo %>
+	</p>
+	<p>
+		<strong>idOperacion:</strong>
+		<%= element.idOperacion %>
+	</p>
+
+<br>
+<a href="/cuenta/edit/<%= element.id %>">Edit</a>
+<a href="/cuenta/create">New</a>
+<a href="/cuenta">Back</a>

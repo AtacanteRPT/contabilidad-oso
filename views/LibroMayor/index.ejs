@@ -1,0 +1,196 @@
+<h4>
+  LIBRO MAYOR
+</h4>
+<div class="row">
+  <div class="col s12 m12">
+
+    <form action="/libromayor/planCuenta" method="POST" id="carform">
+      <!-- Firstname:<input type="text" name="fname"> -->
+      <div class="row">
+        <div class="col s6 m8">
+          <select class="browser-default" name="id" form="carform">
+            <% empresas.forEach((empresa,i)=>{%>
+              <optgroup label="	<%= empresa.nombre%>">
+
+                <% empresa.plandecuentas.forEach((plancuenta,i)=>{%>
+                  <option value="<%= plancuenta.id%>">
+                    <%= plancuenta.id%> -
+                      <%= plancuenta.nombre%>
+                  </option>
+                  <% })%>
+              </optgroup>
+              <% })%>
+          </select>
+        </div>
+        <div class="col s6 m4">
+          <input class="btn" type="submit" value="Escoger Plan">
+        </div>
+      </div>
+    </form>
+  </div>
+
+</div>
+<div class="row">
+    <div class="col s4">
+
+        <a class="waves-effect waves-light btn-small">
+          <i class="material-icons right">picture_as_pdf
+          </i>PDF</a>
+          <a class="waves-effect waves-light btn-small">
+              <i class="material-icons right">file_download
+              </i>Excel</a>
+      </div>
+      <div class="col s8">
+    
+        
+      </div>
+</div>
+
+<% var listaAsientos = []%>
+
+<% librosDiario.forEach((libroDiario,i) =>{%>
+  <% libroDiario.asientos.forEach((asiento,j) =>{  %>
+    <% listaAsientos.push(asiento) %>
+  <%})%>
+<%})%>
+<div class="row">
+  <% cuentas.forEach((auxCuenta, k)=>{%>
+    <div class="col s6 m4">
+
+
+      <div class="card ">
+        <div class="card-content ">
+          <span class="card-title">
+            <%= auxCuenta.nombre%>
+          </span>
+          <table class="centered" border="0" cellpadding="0" cellspacing="0">
+            <thead>
+              <tr>
+                <th>DEBE</th>
+                <th> </th>
+                <th>HABER</th>
+
+              </tr>
+            </thead>
+            <tbody>
+               <% var asientosCuenta = []%>
+              <%  listaAsientos.forEach((auxAsiento,l)=>{%>
+                <% if(auxAsiento.idCuenta.id == auxCuenta.id){%>
+                <% asientosCuenta.push(auxAsiento) %>
+                <%}%>
+                <%})%>
+                <%var sumaDebe = 0%>
+                <%var sumaHaber = 0%>
+                <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                
+                  <% sumaDebe = sumaDebe + auxAsientoCuenta.debe%>
+                  <% sumaHaber = sumaHaber + auxAsientoCuenta.haber%>
+
+              <tr>
+                <td><%= auxAsientoCuenta.debe%></td>
+                <td width="2"><hr style="width:3px; height:30px" /> </td>
+                <td><%= auxAsientoCuenta.haber%></td>
+              </tr>
+              <% })%>
+              <tr class="grey lighten-3">
+                <td><%= sumaDebe%></td>
+                <td width="2"><hr style="width:3px; height:30px" /> </td>
+                <td><%= sumaHaber%></td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
+    </div>
+    <%})%>
+
+</div>
+
+<!-- <table class="striped">
+  <thead>
+    <tr>
+      <th colspan="2">Fecha</th>
+      <th>Detalle</th>
+      <th>Código</th>
+      <th>Cuenta</th>
+      <th>DEBE</th>
+      <th>HABER</th>
+      <th </th>
+
+    </tr>
+  </thead>
+  <tbody>
+    <% librosDiario.forEach((libroDiario,i) =>{%>
+      <%  var fecha = new Date(libroDiario.fecha)%>
+        <tr>
+          <td colspan="2">
+            <%= fecha.toLocaleDateString() %>
+          </td>
+
+          <td>
+            <%= libroDiario.detalle %>
+          </td>
+          <td colspan="3"></td>
+          <td>
+            <a href="/librodiario/delete/<%= libroDiario.id %>">
+              <i class="material-icons circle ">delete</i>
+            </a>
+
+          </td>
+          <td>
+            <a href="/librodiario/edit/<%= libroDiario.id %>">
+              <i class="material-icons circle ">edit</i>
+            </a>
+          </td>
+
+        </tr>
+        <% libroDiario.asientos.forEach((asiento,j)=>{%>
+          <tr>
+            <td colspan="3"></td>
+            <td>
+              <%= asiento.idCuenta.codigo%>
+            </td>
+            <td>
+              <%= asiento.idCuenta.nombre%>
+            </td>
+            <td>
+              <%= asiento.debe%>
+            </td>
+            <td>
+              <%= asiento.haber%>
+            </td>
+
+            <td> -->
+<!-- <a href="/librodiario/edit/<%= libroDiario.id %>">
+                  <i class="small material-icons circle ">edit</i>
+                </a>
+</td>
+</tr>
+<%})%>
+  <% })%>
+    <tr class=" blue-grey lighten-2">
+
+      <% var sumaDebe = 0%>
+        <% var sumaHaber = 0%>
+          <% librosDiario.forEach((libroDiario,i) =>{%>
+            <% libroDiario.asientos.forEach((asiento,j) =>{  %>
+              <% sumaDebe = sumaDebe + asiento.debe%>
+                <% sumaHaber = sumaHaber + asiento.haber%>
+                  <%})%>
+                    <%})%>
+                      <td colspan="3"></td>
+                      <td></td>
+                      <td>TOTAL </td>
+                      <td>
+                        <%= sumaDebe %>
+                      </td>
+                      <td>
+                        <%= sumaHaber%>
+                      </td>
+                      <td></td>
+    </tr>
+    </tbody>
+    </table> -->

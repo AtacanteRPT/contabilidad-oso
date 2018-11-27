@@ -1,0 +1,27 @@
+<h1>Show pet</h1>
+
+	<p>
+		<strong>createdAt:</strong>
+		<%= element.createdAt %>
+	</p>
+	<p>
+		<strong>updatedAt:</strong>
+		<%= element.updatedAt %>
+	</p>
+	<p>
+		<strong>id:</strong>
+		<%= element.id %>
+	</p>
+	<p>
+		<strong>name:</strong>
+		<%= element.name %>
+	</p>
+	<p>
+		<strong>owner:</strong>
+		<%= element.owner %>
+	</p>
+
+<br>
+<a href="/pet/edit/<%= element.id %>">Edit</a>
+<a href="/pet/create">New</a>
+<a href="/pet">Back</a>

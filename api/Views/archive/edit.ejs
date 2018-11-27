@@ -1,0 +1,32 @@
+<div class="">
+  <h1>New archive</h1>
+
+  <div class="body">
+    <form class="" action="/archive/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">fromModel</label>
+          <input type="text" name="fromModel" value="<%= element.fromModel %>" required="false">
+        </div>
+        <div class="">
+          <label for="">originalRecord</label>
+          <input type="text" name="originalRecord" value="<%= element.originalRecord %>" required="false">
+        </div>
+        <div class="">
+          <label for="">originalRecordId</label>
+          <input type="text" name="originalRecordId" value="<%= element.originalRecordId %>" required="false">
+        </div>
+      <button type="submit">Update archive</button>
+    </form>
+    <br />
+    <a href="/archive">Index</a>
+  </div>
+</div>

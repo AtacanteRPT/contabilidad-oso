@@ -1,0 +1,27 @@
+<h1>Show librodiario</h1>
+
+	<p>
+		<strong>createdAt:</strong>
+		<%= element.createdAt %>
+	</p>
+	<p>
+		<strong>updatedAt:</strong>
+		<%= element.updatedAt %>
+	</p>
+	<p>
+		<strong>id:</strong>
+		<%= element.id %>
+	</p>
+	<p>
+		<strong>nombre:</strong>
+		<%= element.nombre %>
+	</p>
+	<p>
+		<strong>razonSocial:</strong>
+		<%= element.razonSocial %>
+	</p>
+
+<br>
+<a href="/librodiario/edit/<%= element.id %>">Edit</a>
+<a href="/librodiario/create">New</a>
+<a href="/librodiario">Back</a>

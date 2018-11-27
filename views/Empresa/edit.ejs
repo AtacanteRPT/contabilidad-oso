@@ -1,0 +1,20 @@
+<div class="">
+  <h1>New Empresa</h1>
+
+  <div class="body">
+    <form class="" action="/Empresa/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+        <div class="">
+          <label for="">nit</label>
+          <input type="number" name="nit" value="<%= element.nit %>" required="false">
+        </div>
+      <button type="submit">Update Empresa</button>
+    </form>
+    <br />
+    <a href="/Empresa">Index</a>
+  </div>
+</div>

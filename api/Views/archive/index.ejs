@@ -1,0 +1,71 @@
+<h1>archive</h1>
+
+
+<% if (result.length == 0) { %>
+  <h4>
+    0 archive
+  </h4>
+<% } else { %>
+<table>
+	<thead>
+    <th>#</th>
+		<th>id</th>
+			<th>id</th>
+			<th>createdAt</th>
+			<th>fromModel</th>
+			<th>originalRecord</th>
+			<th>originalRecordId</th>
+
+		<th>created at</th>
+		<th>updated at</th>
+		<th colspan="3"></th>
+	</thead>
+
+	<tbody>
+		<% result.forEach((item, i) => { %>
+			<tr>
+				<td>
+					<%= (i + 1) %>
+				</td>
+				<td>
+					<%= item.id %>
+				</td>
+					<td>
+						<%= item.id %>
+					</td>
+					<td>
+						<%= item.createdAt %>
+					</td>
+					<td>
+						<%= item.fromModel %>
+					</td>
+					<td>
+						<%= item.originalRecord %>
+					</td>
+					<td>
+						<%= item.originalRecordId %>
+					</td>
+				<td>
+					<%= item.createdAt %>
+				</td>
+				<td>
+					<%= item.updatedAt %>
+				</td>
+				<td>
+					<a href="/archive/show/<%= item.id %>">Show</a>
+				</td>
+				<td>
+					<a href="/archive/delete/<%= item.id %>">Delete</a>
+				</td>
+        <td>
+					<a href="/archive/edit/<%= item.id %>">Edit</a>
+				</td>
+			</tr>
+			<% }) %>
+	</tbody>
+</table>
+
+<% } %>
+
+<br>
+<a href="/archive/create">New</a>

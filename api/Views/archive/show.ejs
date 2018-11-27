@@ -1,0 +1,27 @@
+<h1>Show archive</h1>
+
+	<p>
+		<strong>id:</strong>
+		<%= element.id %>
+	</p>
+	<p>
+		<strong>createdAt:</strong>
+		<%= element.createdAt %>
+	</p>
+	<p>
+		<strong>fromModel:</strong>
+		<%= element.fromModel %>
+	</p>
+	<p>
+		<strong>originalRecord:</strong>
+		<%= element.originalRecord %>
+	</p>
+	<p>
+		<strong>originalRecordId:</strong>
+		<%= element.originalRecordId %>
+	</p>
+
+<br>
+<a href="/archive/edit/<%= element.id %>">Edit</a>
+<a href="/archive/create">New</a>
+<a href="/archive">Back</a>

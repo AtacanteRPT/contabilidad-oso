@@ -1,0 +1,27 @@
+<h1>Show empresa</h1>
+
+	<p>
+		<strong>createdAt:</strong>
+		<%= element.createdAt %>
+	</p>
+	<p>
+		<strong>updatedAt:</strong>
+		<%= element.updatedAt %>
+	</p>
+	<p>
+		<strong>id:</strong>
+		<%= element.id %>
+	</p>
+	<p>
+		<strong>nombre:</strong>
+		<%= element.nombre %>
+	</p>
+	<p>
+		<strong>nit:</strong>
+		<%= element.nit %>
+	</p>
+
+<br>
+<a href="/empresa/edit/<%= element.id %>">Edit</a>
+<a href="/empresa/create">New</a>
+<a href="/empresa">Back</a>

@@ -1,0 +1,32 @@
+<div class="">
+  <h1>New empresa</h1>
+
+  <div class="body">
+    <form class="" action="/empresa/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">updatedAt</label>
+          <input type="number" name="updatedAt" value="<%= element.updatedAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+        <div class="">
+          <label for="">nit</label>
+          <input type="" name="nit" value="<%= element.nit %>" required="false">
+        </div>
+      <button type="submit">Update empresa</button>
+    </form>
+    <br />
+    <a href="/empresa">Index</a>
+  </div>
+</div>

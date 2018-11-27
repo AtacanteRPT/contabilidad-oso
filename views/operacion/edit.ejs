@@ -1,0 +1,17 @@
+<div class="">
+  <h1>New operacion</h1>
+
+  <div class="body">
+    <form class="" action="/operacion/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+      <button type="submit">Update operacion</button>
+    </form>
+    <br />
+    <a href="/operacion">Index</a>
+  </div>
+</div>

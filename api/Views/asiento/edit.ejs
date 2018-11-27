@@ -1,0 +1,44 @@
+<div class="">
+  <h1>New asiento</h1>
+
+  <div class="body">
+    <form class="" action="/asiento/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">updatedAt</label>
+          <input type="number" name="updatedAt" value="<%= element.updatedAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+        <div class="">
+          <label for="">fecha</label>
+          <input type="date" name="fecha" value="<%= element.fecha %>" required="false">
+        </div>
+        <div class="">
+          <label for="">detalle</label>
+          <input type="text" name="detalle" value="<%= element.detalle %>" required="false">
+        </div>
+        <div class="">
+          <label for="">ref</label>
+          <input type="text" name="ref" value="<%= element.ref %>" required="false">
+        </div>
+        <div class="">
+          <label for="">debe</label>
+          <input type="" name="debe" value="<%= element.debe %>" required="false">
+        </div>
+        <div class="">
+          <label for="">haber</label>
+          <input type="" name="haber" value="<%= element.haber %>" required="false">
+        </div>
+      <button type="submit">Update asiento</button>
+    </form>
+    <br />
+    <a href="/asiento">Index</a>
+  </div>
+</div>

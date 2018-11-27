@@ -1,0 +1,32 @@
+<div class="">
+  <h1>New tipocuenta</h1>
+
+  <div class="body">
+    <form class="" action="/tipocuenta/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">updatedAt</label>
+          <input type="number" name="updatedAt" value="<%= element.updatedAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+        <div class="">
+          <label for="">numero</label>
+          <input type="text" name="numero" value="<%= element.numero %>" required="false">
+        </div>
+      <button type="submit">Update tipocuenta</button>
+    </form>
+    <br />
+    <a href="/tipocuenta">Index</a>
+  </div>
+</div>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>319</title>
+
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://code.jquery.com/jquery-2.x-git.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/assets/js/estilo.js"></script>
+  <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+
+  <!--STYLES-->
+  <link rel="stylesheet" href="/styles/importer.css">
+  <!--STYLES END-->
+
+  <style>
+    header,
+    /* main, */
+
+    /* body, */
+
+    footer {
+      padding-left: 300px;
+    }
+
+    @media only screen and (max-width: 992px) {
+      header,
+      main,
+      footer {
+        padding-left: 0;
+      }
+    }
+
+  </style>
+  <ul id="dropdown1" class="dropdown-content">
+    <li>
+      <a href="#!">Ver Perfil</a>
+    </li>
+    <li>
+      <a href="#!">Configuración</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="/auth/salir">Salir</a>
+    </li>
+  </ul>
+  <div class="navbar-fixed">
+    <nav>
+      <div class="nav-wrapper indigo darken-1 ">
+        <a href="#!" class="brand-logo">INF 31 SISTEMAS GERENCIALES II</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger">
+          <i class="material-icons">menu</i>
+        </a>
+        <ul class="right hide-on-med-and-down">
+          <li>
+            <a href="/">login</a>
+          </li>
+          <li>
+            <a href="/registro">Registro</a>
+          </li>
+          <!-- Dropdown Trigger -->
+          <% if(req.isAuthenticated()){%>
+
+          <li>
+            <a class="dropdown-trigger" href="#!" data-target="dropdown1"><%= req.user.nombre%>
+              <i class="material-icons right">arrow_drop_down</i>
+            </a>
+          </li>
+          <% }%>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <ul class="sidenav" id="mobile-demo">
+    <li>
+      <a href="#!">Ver Perfil</a>
+    </li>
+    <li>
+      <a href="#!">Configuración</a>
+    </li>
+    <li class="divider"></li>
+    <li>
+      <a href="#!">Salir</a>
+    </li>
+  </ul>
+  <% if(req.isAuthenticated()){%>
+  
+    
+    <ul  id="slide-out" class="sidenav sidenav-fixed" style="margin-top: 70px;">
+      
+      <li>
+        <a class="collection-item" href="/principal/index">PRINCIPAL</a>
+      </li>
+
+      <li>
+        <a class="collection-item" href="/empresa/index">EMPRESAS</a>
+      </li>
+      <li>
+        <a class="collection-item" href="/plandecuenta/index">PLAN DE CUENTAS</a>
+        <ul>
+          <li>
+          <a class="collection-item" href="/operacion/index">&emsp; Operaciones</a>
+        </li>
+        <li>
+          <a class="collection-item" href="/operacion/cuenta">&emsp; Cuentas</a>
+        </li>
+      </ul>
+    </li>
+    <li>
+      <a class="collection-item" href="/libroDiario/index">LIBRO DIARIO</a>
+    </li>
+    <li>
+      <a class="collection-item" href="/libroMayor/index">LIBRO MAYOR</a>
+    </li>
+    <li>
+      <a class="collection-item" href="/balance/index">BALANCE GENERAL</a>
+    </li>
+    <li>
+      <a class="collection-item" href="#">REPORTES</a>
+    </li>
+  </ul>
+  
+  
+  <a href="#" data-target="slide-out" class="sidenav-trigger">
+    <i class="material-icons">menu</i>
+  </a>
+  <%}%>
+</head>
+
+<body>
+
+
+  <div class="row">
+    <div class="col s12 m3">
+
+    </div>
+    <div class="col s12 m9">
+
+      <%- body %>
+    </div>
+  </div>
+
+
+
+
+  <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like React, Vue.js, Angular, Ember, and Backbone
+        require that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different view engine (handlebars, dust, pug/jade, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+  <!--TEMPLATES-->
+  
+  <!--TEMPLATES END-->
+
+
+  <!--
+        Server-side View Locals
+        ========================
+
+        Sometimes, it's convenient to get access to your server-side view locals from
+        client-side JavaScript.  This can improve page load times, remove the need for
+        extra AJAX requests, and make your client-side code easier to understand and
+        to maintain.  Sails provides a simple mechanism for accessing dynamic view
+        locals: the "exposeLocalsToBrowser()" view partial.
+
+        For more information on using this built-in feature, see:
+        https://sailsjs.com/docs/concepts/views/locals#?escaping-untrusted-data-using-exposelocalstobrowser
+
+    -->
+
+
+  <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+  <!--SCRIPTS-->
+  <script src="/dependencies/sails.io.js"></script>
+  <script src="/js/estilo.js"></script>
+  <script src="/js/pages/dashboard.page.js"></script>
+  <!--SCRIPTS END-->
+</body>
+<footer class="page-footer indigo darken-1">
+  <div class="container">
+    <div class="row">
+      <div class="col l6 s12">
+        <h5 class="white-text">Pie de página</h5>
+        <p class="grey-text text-lighten-4">nosotros somos una empresa de azucar.</p>
+      </div>
+      <div class="col l4 offset-l2 s12">
+        <h5 class="white-text">Links</h5>
+        <ul>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">Link 1</a>
+          </li>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">Link 2</a>
+          </li>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">Link 3</a>
+          </li>
+          <li>
+            <a class="grey-text text-lighten-3" href="#!">Link 4</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copyright indigo darken-3">
+    <div class="container">
+      © 2014 Copyright Text
+      <a class="grey-text text-lighten-4 right" href="#!">Más Links</a>
+    </div>
+  </div>
+</footer>
+
+</html>

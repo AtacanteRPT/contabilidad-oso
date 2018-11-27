@@ -1,0 +1,20 @@
+<div class="">
+  <h1>New Pet</h1>
+
+  <div class="body">
+    <form class="" action="/Pet/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">name</label>
+          <input type="text" name="name" value="<%= element.name %>" required="true">
+        </div>
+        <div class="">
+          <label for="">owner</label>
+          <input type="text" name="owner" value="<%= element.owner %>" required="false">
+        </div>
+      <button type="submit">Update Pet</button>
+    </form>
+    <br />
+    <a href="/Pet">Index</a>
+  </div>
+</div>

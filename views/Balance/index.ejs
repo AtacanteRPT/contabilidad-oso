@@ -1,0 +1,148 @@
+<h3>Balance General</h3>
+<div class="row">
+    <div class="col s12 m12">
+  
+      <form action="/balance/planCuenta" method="POST" id="carform">
+        <!-- Firstname:<input type="text" name="fname"> -->
+        <div class="row">
+          <div class="col s6 m8">
+            <select class="browser-default" name="id" form="carform">
+              <% empresas.forEach((empresa,i)=>{%>
+                <optgroup label="	<%= empresa.nombre%>">
+  
+                  <% empresa.plandecuentas.forEach((plancuenta,i)=>{%>
+                    <option value="<%= plancuenta.id%>">
+                      <%= plancuenta.id%> -
+                        <%= plancuenta.nombre%>
+                    </option>
+                    <% })%>
+                </optgroup>
+                <% })%>
+            </select>
+          </div>
+          <div class="col s6 m4">
+            <input class="btn" type="submit" value="Escoger Plan">
+          </div>
+        </div>
+      </form>
+    </div>
+  
+  </div>
+  <div class="row">
+      <div class="col s4">
+  
+          <a class="waves-effect waves-light btn-small">
+            <i class="material-icons right">picture_as_pdf
+            </i>PDF</a>
+            <a class="waves-effect waves-light btn-small">
+                <i class="material-icons right">file_download
+                </i>Excel</a>
+        </div>
+        <div class="col s8">
+      
+          
+        </div>
+  </div>
+  <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a href="#test1">4 Columnas</a></li>
+          <li class="tab col s3"><a class="active" href="#test2">6 Columnas</a></li>
+          <li class="tab col s3"><a href="#test4">10 Columnas</a></li>
+        </ul>
+      </div>
+      <div id="test1" class="col s12">
+
+<!-- TAB 111111111111 -->
+
+          <% var listaAsientos = []%>
+
+          <% librosDiario.forEach((libroDiario,i) =>{%>
+            <% libroDiario.asientos.forEach((asiento,j) =>{  %>
+              <% listaAsientos.push(asiento) %>
+            <%})%>
+          <%})%>
+
+          <table>
+              <thead>
+                <tr>
+                    <th></th>
+                    <th ></th>
+                    <th colspan="2">SUMAS</th>
+                    <th colspan="2">SALDOS</th>
+
+                </tr>
+              </thead>
+      
+              <tbody>
+                <tr>
+                    <th>Nro</th>
+                    <th>Cuentas</th>
+                    <th>Debe</th>
+                    <th>Haber</th>
+                    <th>Deudor</th>
+                    <th>Acreedor</th>
+                </tr>
+                  
+              <% var totalDebe = 0%>
+              <% var totalHaber = 0%>
+              <% var totalDeudor = 0%>
+              <% var totalAcreedor = 0%>
+            <% cuentas.forEach((auxCuenta, k)=>{%>
+
+                        <% var asientosCuenta = []%>
+                        <%  listaAsientos.forEach((auxAsiento,l)=>{%>
+                          <% if(auxAsiento.idCuenta.id == auxCuenta.id){%>
+                          <% asientosCuenta.push(auxAsiento) %>
+                          <%}%>
+                        <%})%>
+
+                          <%var sumaDebe = 0%>
+                          <%var sumaHaber = 0%>
+                          <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                          
+                            <% sumaDebe = sumaDebe + auxAsientoCuenta.debe%>
+                            <% sumaHaber = sumaHaber + auxAsientoCuenta.haber%>
+
+                          <% })%>
+                          <% totalDebe = totalDebe + sumaDebe%>
+                          <% totalHaber = totalHaber + sumaHaber%>
+                          
+                          <tr>
+                              <td> <%= k%></td>
+                              <td><%= auxCuenta.nombre%></td>
+                              <td><%= sumaDebe%></td>
+                              <td><%= sumaHaber%></td>
+                              <% if(sumaDebe > sumaHaber){%>
+                                <% totalDeudor = totalDeudor + (sumaDebe - sumaHaber)%>
+                                <td><%= (sumaDebe - sumaHaber)%></td>
+                                <td></td>
+                              <%}else {%>
+                              <% totalAcreedor = totalAcreedor + (sumaHaber - sumaDebe)%>
+
+                              <td></td>
+                              <td><%= (sumaHaber - sumaDebe)%></td>
+                                <%}%>
+                            </tr>
+              
+            <%})%>
+            <tr class="grey lighten-3">
+                <th colspan="2">TOTAL</th>
+
+                <th><%= totalDebe%></th>
+                <th><%= totalHaber%></th>
+                <th><%= totalDeudor%></th>
+                <th><%= totalAcreedor%></th>
+            </tr>
+
+            
+            </tbody>
+          </table>
+
+<!-- fin tab 1111111111 -->
+
+
+      </div>
+      <div id="test2" class="col s12">Test 2</div>
+      <div id="test4" class="col s12">Test 4</div>
+    </div>

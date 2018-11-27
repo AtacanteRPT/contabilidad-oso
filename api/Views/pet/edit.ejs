@@ -1,0 +1,32 @@
+<div class="">
+  <h1>New pet</h1>
+
+  <div class="body">
+    <form class="" action="/pet/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">updatedAt</label>
+          <input type="number" name="updatedAt" value="<%= element.updatedAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+        <div class="">
+          <label for="">name</label>
+          <input type="text" name="name" value="<%= element.name %>" required="false">
+        </div>
+        <div class="">
+          <label for="">owner</label>
+          <input type="text" name="owner" value="<%= element.owner %>" required="false">
+        </div>
+      <button type="submit">Update pet</button>
+    </form>
+    <br />
+    <a href="/pet">Index</a>
+  </div>
+</div>

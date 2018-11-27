@@ -1,0 +1,24 @@
+<div class="">
+  <h1>New usuarioplan</h1>
+
+  <div class="body">
+    <form class="" action="/usuarioplan/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">createdAt</label>
+          <input type="number" name="createdAt" value="<%= element.createdAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">updatedAt</label>
+          <input type="number" name="updatedAt" value="<%= element.updatedAt %>" required="false">
+        </div>
+        <div class="">
+          <label for="">id</label>
+          <input type="number" name="id" value="<%= element.id %>" required="true">
+        </div>
+      <button type="submit">Update usuarioplan</button>
+    </form>
+    <br />
+    <a href="/usuarioplan">Index</a>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="">
+  <h1>New TipoCuenta</h1>
+
+  <div class="body">
+    <form class="" action="/TipoCuenta/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+        <div class="">
+          <label for="">numero</label>
+          <input type="text" name="numero" value="<%= element.numero %>" required="false">
+        </div>
+      <button type="submit">Update TipoCuenta</button>
+    </form>
+    <br />
+    <a href="/TipoCuenta">Index</a>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="">
+  <h1>New PlanDeCuenta</h1>
+
+  <div class="body">
+    <form class="" action="/PlanDeCuenta/update" method="post">
+      <input name="id" value="<%= element.id %>" hidden="true" required>
+        <div class="">
+          <label for="">nombre</label>
+          <input type="text" name="nombre" value="<%= element.nombre %>" required="false">
+        </div>
+        <div class="">
+          <label for="">codigo</label>
+          <input type="number" name="idTipoCuenta" value="<%= element.codigo %>" required="false">
+        </div>
+      <button type="submit">Update PlanDeCuenta</button>
+    </form>
+    <br />
+    <a href="/PlanDeCuenta">Index</a>
+  </div>
+</div>
