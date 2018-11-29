@@ -105,7 +105,7 @@ module.exports = {
 
 
               sails.log("DATOS_librosDiario", datoLibroDiarios)
-              return res.view('libroMayor/index', {
+              return res.view('libromayor/index', {
                 empresas: empresas,
                 cuentas: datoCuentas,
                 idPlanDeCuenta: req.param('id'),

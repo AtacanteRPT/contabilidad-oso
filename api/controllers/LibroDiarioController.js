@@ -35,7 +35,7 @@ module.exports = {
 
       }, function (error) {
         sails.log("Saliendo del Bucle")
-        return res.view('LibroDiario/index', {
+        return res.view('librodiario/index', {
           empresas: empresas,
           cuentas: [],
           idPlanDeCuenta: req.param('id'),
@@ -105,7 +105,7 @@ module.exports = {
 
 
               sails.log("DATOS_librosDiario", datoLibroDiarios)
-              return res.view('LibroDiario/index', {
+              return res.view('librodiario/index', {
                 empresas: empresas,
                 cuentas: datoCuentas,
                 idPlanDeCuenta: req.param('id'),
@@ -122,7 +122,7 @@ module.exports = {
 
           // Asiento.find({ idPlanDeCuenta: req.param('id') }).populate('idCuenta').exec(function (err, datosAsientos) {
           //   sails.log("asientos :", datosAsientos)
-          //   return res.view('LibroDiario/index', {
+          //   return res.view('librodiario/index', {
           //     empresas: empresas,
           //     cuentas: datoCuentas,
           //     idPlanDeCuenta: req.param('id'),
@@ -173,7 +173,7 @@ module.exports = {
           }
 
           LibroDiario.find({ idPlanDeCuenta: req.param('id') }).populate('idCuenta').exec(function (err, datoLibroDiarios) {
-            return res.view('LibroDiario/index', {
+            return res.view('librodiario/index', {
               empresas: empresas,
               cuentas: datoCuentas,
               idPlanDeCuenta: req.param('id'),
@@ -183,7 +183,7 @@ module.exports = {
 
           // Asiento.find({ idPlanDeCuenta: req.param('id') }).populate('idCuenta').exec(function (err, datosAsientos) {
           //   sails.log("asientos :", datosAsientos)
-          //   return res.view('LibroDiario/index', {
+          //   return res.view('librodiario/index', {
           //     empresas: empresas,
           //     cuentas: datoCuentas,
           //     idPlanDeCuenta: req.param('id'),
@@ -203,7 +203,7 @@ module.exports = {
       if (err) {
         return res.serverError(err)
       };
-      return res.redirect('/LibroDiario/planCuenta/' + req.body.idPlanDeCuenta)
+      return res.redirect('/librodiario/planCuenta/' + req.body.idPlanDeCuenta)
     });
   },
   show: function (req, res, next) {
@@ -323,7 +323,7 @@ module.exports = {
 
           // Asiento.find({ idPlanDeCuenta: req.param('id') }).populate('idCuenta').exec(function (err, datosAsientos) {
           //   sails.log("asientos :", datosAsientos)
-          //   return res.view('LibroDiario/index', {
+          //   return res.view('librodiario/index', {
           //     empresas: empresas,
           //     cuentas: datoCuentas,
           //     idPlanDeCuenta: req.param('id'),
@@ -355,7 +355,7 @@ module.exports = {
       if (err) {
         return res.serverError(err)
       };
-      return res.redirect('LibroDiario/show/' + req.param('id'));
+      return res.redirect('librodiario/show/' + req.param('id'));
     });
   },
 
@@ -365,7 +365,7 @@ module.exports = {
         if (err) {
           return next(err);
         }
-        return res.redirect('/LibroDiario/planCuenta/'+datoLibro.idPlanDeCuenta);
+        return res.redirect('/librodiario/planCuenta/'+datoLibro.idPlanDeCuenta);
       });
 
     })
