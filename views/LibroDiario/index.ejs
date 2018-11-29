@@ -38,99 +38,50 @@
 
 
 
-	<!-- Modal Structure {{{{{{{{{{{{{{{{{{{{{-->
-	<div id="modal1" class="modal">
-		<form action="/asiento/crear" method="POST" id="idForm_cuenta">
-			<div class="modal-content">
-				<h4>Nuevo Asiento</h4>
-
-				<input name="idPlanDeCuenta" value="<%= idPlanDeCuenta %>" hidden="true" required>
-				<div class="row">
-					<div class="col12 m6">
-						<input type="text" name="detalle" placeholder="Detalle">
-					</div>
-					<div class="col12 m6">
-						<input type="date" name="fecha" placeholder="Fecha">
-					</div>
-				</div>
-				<div class="row">
-					<div class="col12 m4">
-						<div class="input-field">
-							<select name="idCuenta" form="idForm_cuenta">
-								<option value="" disabled selected>Tipo Cuenta</option>
-
-								<% cuentas.forEach((cuenta,i)=>{%>
-									<option value="<%= cuenta.id%>">
-										<%= cuenta.nombre%>
-									</option>
-									<% })%>
-
-							</select>
-							<label>Cuenta</label>
-						</div>
-					</div>
-					<div class="col12 m4">
-						<input type="number" name="debe" step="0.01" placeholder="0.00">
-					</div>
-					<div class="col12 m4">
-						<input type="numer" name="haber" step="0.01" placeholder="0.00">
-					</div>
-				</div>
-
-
-			</div>
-			<div class="modal-footer">
-				<input class="modal-close btn-flat" type="submit" value="CREAR">
-		</form>
-		<!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
-		</div>
-	</div>
-
-	<!-- }}}}}}}}}}}}}}}}}}}} -->
-
-
-
 </div>
 
 <!-- Modal Structure {{{{{{{{{{{{{{{{{{{{{-->
 <div class="row">
-	<div class="col s4">
+	<div class="col s8">
 
-		<a class="waves-effect waves-light btn modal-trigger" href="#modal2">Nuevo Día</a>
+
+		<form action="/Librodiario/crear" method="POST" id="idForm_cuenta2">
+			<input name="idPlanDeCuenta" value="<%= idPlanDeCuenta %>" hidden="true" required>
+			<div class="row">
+				<div class="col s12 m2">
+					<h6>Nuevo Dia</h6>
+
+				</div>
+				<div class="col s6 m6">
+					<input type="text" name="detalle" placeholder="Detalle">
+				</div>
+				<div class="col s6 m2">
+					<input class="datepicker" type="text" name="fecha" placeholder="Fecha">
+				</div>
+				<div class="col s6 m2">
+					
+					<input class="btn-flat  green accent-3" type="submit" value="CREAR">
+				</div>
+			</div>
+		</form>
+
+
+
+
 	</div>
 	<div class="col s4">
 
 		<a class="waves-effect waves-light btn-small">
 			<i class="material-icons right">picture_as_pdf
 			</i>PDF</a>
-			<a class="waves-effect waves-light btn-small">
-					<i class="material-icons right">file_download
-					</i>Excel</a>
+		<a class="waves-effect waves-light btn-small">
+			<i class="material-icons right">file_download
+			</i>Excel</a>
 	</div>
 
 </div>
 
-<div id="modal2" class="modal">
-	<form action="/Librodiario/crear" method="POST" id="idForm_cuenta2">
-		<div class="modal-content">
-			<h4>Nuevo Dia</h4>
 
-			<input name="idPlanDeCuenta" value="<%= idPlanDeCuenta %>" hidden="true" required>
-			<div class="row">
-				<div class="col12 m6">
-					<input type="text" name="detalle" placeholder="Detalle">
-				</div>
-				<div class="col12 m6">
-					<input type="date" name="fecha" placeholder="Fecha">
-				</div>
-			</div>
-		</div>
-		<div class="modal-footer">
-			<input class="modal-close btn-flat" type="submit" value="CREAR">
-	</form>
-	<!-- <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a> -->
-	</div>
-</div>
 
 <!-- }}}}}}}}}}}}}}}}}}}} -->
 <table class="striped">

@@ -15,11 +15,11 @@ module.exports = {
     });
   },
   crear: function (req, res, next) {
-    sails.log("body cuenta",req.body)
+    sails.log("body cuenta", req.body)
     Cuenta.create(req.body).fetch().exec(function (err, datoCuenta) {
       if (err) return Error('Error');
-      sails.log("creado",datoCuenta)
-      return res.redirect('/PlanDeCuenta/show/'+req.body.idPlanDeCuenta);
+      sails.log("creado", datoCuenta)
+      return res.redirect('/PlanDeCuenta/show/' + req.body.idPlanDeCuenta);
     });
   },
   show: function (req, res, next) {
@@ -54,11 +54,15 @@ module.exports = {
   },
 
   delete: function (req, res, next) {
-    Cuenta.destroy(req.param('id'), function Update(err, value) {
-      if (err) {
-        return next(err);
-      }
-      return res.redirect('/Cuenta/index');
-    });
+
+    Cuenta.findOne(req.param('id')).exec(function (err, datoCuenta) {
+
+      Cuenta.destroy(req.param('id'), function Update(err, value) {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect('/PlanDeCuenta/show/'+ datoCuenta.idPlanDeCuenta);
+      });
+    })
   },
 };

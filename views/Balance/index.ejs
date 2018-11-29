@@ -109,7 +109,7 @@
                           <% totalHaber = totalHaber + sumaHaber%>
                           
                           <tr>
-                              <td> <%= k%></td>
+                              <td> <%= k+1%></td>
                               <td><%= auxCuenta.nombre%></td>
                               <td><%= sumaDebe%></td>
                               <td><%= sumaHaber%></td>
@@ -143,6 +143,157 @@
 
 
       </div>
-      <div id="test2" class="col s12">Test 2</div>
+
+
+      <div id="test2" class="col s12">
+        <table>
+          <thead>
+            <tr>
+              <th></th>
+              <th></th>
+              <th colspan="2">BALANCE DE SALDOS</th>
+              <th colspan="2">ESTADO DE RESULTADOS</th>
+              <th colspan="2"> BALANCE GENERAL</th>
+            </tr>
+            <tr>
+              <th>NRO</th>
+              <th>Cuentas</th>
+              <th>Deudor</th>
+              <th>Acreedor</th>
+              <th>Gastos</th>
+              <th>Ingresos</th>
+              <th>Activos</th>
+              <th>Pasivos</th>
+            </tr>
+          </thead>
+          <tbody>
+       
+              <% var totalGastos = 0%>
+              <% var totalIngresos = 0%>
+              <% var totalPasivo = 0%>
+              <% var totalActivo = 0%>
+              <% var totalDeudor = 0%>
+              <% var totalAcreedor = 0%>
+            <% cuentas.forEach((auxCuenta, k)=>{%>
+
+                        <% var asientosCuenta = []%>
+                        <%  listaAsientos.forEach((auxAsiento,l)=>{%>
+                          <% if(auxAsiento.idCuenta.id == auxCuenta.id){%>
+                          <% asientosCuenta.push(auxAsiento) %>
+                          <%}%>
+                        <%})%>
+
+                      
+
+                          <%var sumaDebe = 0%>
+                          <%var sumaHaber = 0%>
+                          <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                          
+                            <% sumaDebe = sumaDebe + auxAsientoCuenta.debe%>
+                            <% sumaHaber = sumaHaber + auxAsientoCuenta.haber%>
+
+                          <% })%>
+                          <% totalDebe = totalDebe + sumaDebe%>
+                          <% totalHaber = totalHaber + sumaHaber%>
+                          
+                          <tr>
+                              <td> <%= k+1%></td>
+                              <td><%= auxCuenta.nombre%></td>
+                              
+                              <% if(sumaDebe > sumaHaber){%>
+                                <% totalDeudor = totalDeudor + (sumaDebe - sumaHaber)%>
+                                <td><%= (sumaDebe - sumaHaber)%></td>
+                                <td> 0</td>
+                              <%}else {%>
+                              <% totalAcreedor = totalAcreedor + (sumaHaber - sumaDebe)%>
+
+                              <td> 0</td>
+                              <td><%= (sumaHaber - sumaDebe)%></td>
+                              <%}%>
+                                
+                                <% var sumaGastos = 0%>
+                                <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                   
+                                  <% if(auxCuenta.idOperacion.nombre =="GASTOS"){%>
+                                  <% sumaGastos = sumaGastos + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
+                                  <% }%>
+                                <% })%>
+                                <% totalGastos = totalGastos + sumaGastos%>
+                              <td> <%= sumaGastos%> </td>
+                                
+                              <% var sumaIngresos = 0%>
+                                <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                   
+                                  <% if(auxCuenta.idOperacion.nombre =="INGRESOS"){%>
+                                  <% sumaIngresos = sumaIngresos + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
+                                  <% }%>
+                                <% })%>
+                              <td> <%= sumaIngresos%> </td>
+                              <% totalIngresos = totalIngresos + sumaIngresos%>
+
+                              <% var sumaActivo = 0%>
+                              <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                 
+                                <% if(auxCuenta.idOperacion.nombre =="ACTIVO"){%>
+                                <% sumaActivo = sumaActivo + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
+                                <% }%>
+                              <% })%>
+                            <td> <%= sumaActivo%> </td>
+                            <% totalActivo = totalActivo + sumaActivo%>
+
+                            <% var sumaPasivo = 0%>
+                                <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
+                                   
+                                  <% if(auxCuenta.idOperacion.nombre =="PASIVO"){%>
+                                  <% sumaPasivo = sumaPasivo + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
+                                  <% }%>
+                                <% })%>
+                              <td> <%= sumaPasivo%> </td>
+                              <% totalPasivo = totalPasivo + sumaPasivo%>
+
+                            </tr>
+                            
+              
+            <%})%>
+
+            <tr>
+                <td></td>
+                <td>TOTALES</td>
+                <td><%= totalDeudor%></td>
+                <td><%= totalAcreedor%></td>
+                <td><%= totalGastos%></td>
+                <td><%= totalIngresos%></td>
+                <td><%= totalActivo%></td>
+                <td><%= totalPasivo%></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td rowspan="2"> UTILIDAD DEL PERIODO</td>
+                <td></td>
+                <td></td>
+                <td><%= (totalIngresos - totalGastos)%></td>
+                <td></td>
+                <td></td>
+                <td><%= (totalActivo - totalPasivo)%></td>
+              </tr>
+              <tr>
+                <td></td>
+ 
+                <td></td>
+                <td></td>
+                <td><%= totalGastos + (totalIngresos - totalGastos)%></td>
+                <td><%= totalIngresos%></td>
+                <td><%= totalActivo%></td>
+                <td><%= totalPasivo + (totalActivo - totalPasivo) %></td>
+              </tr>
+          </tbody>
+        </table>
+        
+
+
+
+
+
+      </div>
       <div id="test4" class="col s12">Test 4</div>
     </div>

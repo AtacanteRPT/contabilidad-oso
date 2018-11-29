@@ -206,6 +206,11 @@ module.exports = {
       return res.redirect('/LibroDiario/planCuenta/' + req.body.idPlanDeCuenta)
     });
   },
+  otra:function(req,res,next){
+
+    
+  }
+  ,
   show: function (req, res, next) {
     LibroDiario.findOneById(req.param('id'), function Founded(err, value) {
       if (err) {

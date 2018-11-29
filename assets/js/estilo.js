@@ -1,11 +1,23 @@
-$(document).ready(function(){
+$(document).ready(function () {
   $(".dropdown-trigger").dropdown();
   $('.collapsible').collapsible();
   $('.sidenav').sidenav();
   $('.modal').modal();
-    $('select').formSelect();
+  $('select').formSelect();
+  $('.datepicker').datepicker({ 
+    firstDay: true, 
+    format: 'yyyy-mm-dd',
+    i18n: {
+        months: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
+        monthsShort: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic"],
+        weekdays: ["Domingo","Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
+        weekdaysShort: ["Dom","Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
+        weekdaysAbbrev: ["D","L", "M", "M", "J", "V", "S"]
+    }
+});
 
-        
+
+
 });
 var elem = document.querySelector('.collapsible.expandable');
 var instance = M.Collapsible.init(elem, {
@@ -13,7 +25,7 @@ var instance = M.Collapsible.init(elem, {
 });
 
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
   var elems = document.querySelectorAll('.sidenav');
   var instances = M.Sidenav.init(elems, options);
 
@@ -39,4 +51,3 @@ instance.open();
   */
 
 
-        

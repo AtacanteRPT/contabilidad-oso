@@ -1,15 +1,13 @@
 <!-- <h1>Show PlanDeCuenta</h1> -->
-<h1>
+<h3 class="header">
   <%= planCuenta.nombre %>
-</h1>
+</h3>
 <p>
   <strong>idTipoCuenta:</strong>
   <%= planCuenta.codigo %>
 </p>
 
-<div class="container">
-
-  <h2 class="header">PLAN DE CUENTAS</h2>
+<!-- <div class="container"> -->
   <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Nueva Cuenta</a>
 
   <!-- Modal Structure {{{{{{{{{{{{{{{{{{{{{-->
@@ -23,16 +21,16 @@
         <input type="number" name="codigo" step="0.01" placeholder="codigo">
 
         <div class="input-field">
-            <select name="idOperacion" form="idForm_cuenta">
-              <option value="" disabled selected>Tipo de Operación</option>
-              <% planCuenta.operaciones.forEach((operacion,i)=>{%>
-                <option value="<%= operacion.id%>">
-                  <%= operacion.nombre%>
-                </option>
-                <% })%>
-            </select>
-            <label>OPERACIÓN</label>
-          </div>
+          <select name="idOperacion" form="idForm_cuenta">
+            <option value="" disabled selected>Tipo de Operación</option>
+            <% planCuenta.operaciones.forEach((operacion,i)=>{%>
+              <option value="<%= operacion.id%>">
+                <%= operacion.nombre%>
+              </option>
+              <% })%>
+          </select>
+          <label>OPERACIÓN</label>
+        </div>
       </div>
       <div class="modal-footer">
         <input class="modal-close waves-effect waves-green btn-flat" type="submit" value="CREAR">
@@ -44,27 +42,30 @@
   <!-- }}}}}}}}}}}}}}}}}}}} -->
   <div class="card-panel ">
     <!-- <span>Empresa de azucar OSO -->
-    <ul class="collapsible popout">
 
+
+    <div class="row">
       <% planCuenta.listaOperaciones.forEach((lOperacion,i)=>{%>
-        <li class="active">
-          <div class="collapsible-header">
-            <i class="medium material-icons">money_off</i> <%= lOperacion.nombre%></div>
-          <div class="collapsible-body">
-            <% lOperacion.listaCuentas.forEach((cuenta,i)=>{%>
-            <span><%= cuenta.codigo%> - <%= cuenta.nombre%>
-              <br>
-            </span>
-            <% })%>
-          </div>
-        </li>
-        <% })%>
-    </ul>
 
-    </span>
+        <div class="col s12 m6">
+          <ul class="collection">
+            <li class="collection-item active">
+              <%= lOperacion.nombre%>
+            </li>
+
+            <% lOperacion.listaCuentas.forEach((cuenta,i)=>{%>
+              <li class="collection-item"><div><%= cuenta.codigo%> - <%= cuenta.nombre%><a href="/cuenta/delete/<%=cuenta.id%>" class="secondary-content"><i class="material-icons">delete_forever
+                </i></a></div></li>
+            <% })%>
+          </ul>
+        </div>
+
+        <% })%>
+    </div>
+
   </div>
 
-</div>
+<!-- </div> -->
 
 
 <br>

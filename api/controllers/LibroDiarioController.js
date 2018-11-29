@@ -360,12 +360,16 @@ module.exports = {
   },
 
   delete: function (req, res, next) {
-    LibroDiario.destroy(req.param('id'), function Update(err, value) {
-      if (err) {
-        return next(err);
-      }
-      return res.redirect('/LibroDiario');
-    });
+    LibroDiario.findOne(req.param('id')).exec(function(err,datoLibro){
+      LibroDiario.destroy(req.param('id'), function Update(err, value) {
+        if (err) {
+          return next(err);
+        }
+        return res.redirect('/LibroDiario/planCuenta/'+datoLibro.idPlanDeCuenta);
+      });
+
+    })
+    
   },
 
 };
