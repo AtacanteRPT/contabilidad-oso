@@ -43,6 +43,11 @@
           
         </div>
   </div>
+  <style>
+  .carousel .carousel-item{
+  width:100%;
+}</style>
+
   <div class="row">
       <div class="col s12">
         <ul class="tabs">
@@ -54,6 +59,7 @@
       <div id="test1" class="col s12">
 
 <!-- TAB 111111111111 -->
+        <br><br>
 
           <% var listaAsientos = []%>
 
@@ -62,7 +68,8 @@
               <% listaAsientos.push(asiento) %>
             <%})%>
           <%})%>
-
+          <h4 class="center"><%=empresas[0].nombre%></h4>
+          <h5 class="center">BALANCE DE COMPROBACIÓN DE SUMAS Y SALDOS</h5>
           <table>
               <thead>
                 <tr>
@@ -115,13 +122,13 @@
                               <td><%= sumaHaber%></td>
                               <% if(sumaDebe > sumaHaber){%>
                                 <% totalDeudor = totalDeudor + (sumaDebe - sumaHaber)%>
-                                <td><%= (sumaDebe - sumaHaber)%></td>
-                                <td></td>
+                                <td><%= (sumaDebe - sumaHaber).toFixed(2);%></td>
+                                <td>0</td>
                               <%}else {%>
                               <% totalAcreedor = totalAcreedor + (sumaHaber - sumaDebe)%>
 
-                              <td></td>
-                              <td><%= (sumaHaber - sumaDebe)%></td>
+                              <td>0</td>
+                              <td><%= (sumaHaber - sumaDebe).toFixed(2);%></td>
                                 <%}%>
                             </tr>
               
@@ -129,10 +136,10 @@
             <tr class="grey lighten-3">
                 <th colspan="2">TOTAL</th>
 
-                <th><%= totalDebe%></th>
-                <th><%= totalHaber%></th>
-                <th><%= totalDeudor%></th>
-                <th><%= totalAcreedor%></th>
+                <th><%= totalDebe.toFixed(2);%></th>
+                <th><%= totalHaber.toFixed(2);%></th>
+                <th><%= totalDeudor.toFixed(2);%></th>
+                <th><%= totalAcreedor.toFixed(2);%></th>
             </tr>
 
             
@@ -146,6 +153,13 @@
 
 
       <div id="test2" class="col s12">
+<br>
+<br>
+<br>
+
+          <h4 class="center"><%=empresas[0].nombre%></h4>
+          <h5 class="center"> HOJA DE TRABAJO DE SEIS COLUMNAS</h5>
+          <h6 class="center">Expresado en Bolivianos</h6H6>
         <table>
           <thead>
             <tr>
@@ -202,13 +216,13 @@
                               
                               <% if(sumaDebe > sumaHaber){%>
                                 <% totalDeudor = totalDeudor + (sumaDebe - sumaHaber)%>
-                                <td><%= (sumaDebe - sumaHaber)%></td>
+                                <td><%= (sumaDebe - sumaHaber).toFixed(2);%></td>
                                 <td> 0</td>
                               <%}else {%>
                               <% totalAcreedor = totalAcreedor + (sumaHaber - sumaDebe)%>
 
                               <td> 0</td>
-                              <td><%= (sumaHaber - sumaDebe)%></td>
+                              <td><%= (sumaHaber - sumaDebe).toFixed(2);%></td>
                               <%}%>
                                 
                                 <% var sumaGastos = 0%>
@@ -219,7 +233,7 @@
                                   <% }%>
                                 <% })%>
                                 <% totalGastos = totalGastos + sumaGastos%>
-                              <td> <%= sumaGastos%> </td>
+                              <td> <%= sumaGastos.toFixed(2);%> </td>
                                 
                               <% var sumaIngresos = 0%>
                                 <% asientosCuenta.forEach((auxAsientoCuenta,p)=>{%>
@@ -228,7 +242,7 @@
                                   <% sumaIngresos = sumaIngresos + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
                                   <% }%>
                                 <% })%>
-                              <td> <%= sumaIngresos%> </td>
+                              <td> <%= sumaIngresos.toFixed(2);%> </td>
                               <% totalIngresos = totalIngresos + sumaIngresos%>
 
                               <% var sumaActivo = 0%>
@@ -238,7 +252,7 @@
                                 <% sumaActivo = sumaActivo + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
                                 <% }%>
                               <% })%>
-                            <td> <%= sumaActivo%> </td>
+                            <td> <%= sumaActivo.toFixed(2);%> </td>
                             <% totalActivo = totalActivo + sumaActivo%>
 
                             <% var sumaPasivo = 0%>
@@ -248,7 +262,7 @@
                                   <% sumaPasivo = sumaPasivo + auxAsientoCuenta.haber +auxAsientoCuenta.debe%>
                                   <% }%>
                                 <% })%>
-                              <td> <%= sumaPasivo%> </td>
+                              <td> <%= sumaPasivo.toFixed(2);%> </td>
                               <% totalPasivo = totalPasivo + sumaPasivo%>
 
                             </tr>
@@ -256,35 +270,35 @@
               
             <%})%>
 
-            <tr>
+            <tr class="grey lighten-3">
                 <td></td>
                 <td>TOTALES</td>
-                <td><%= totalDeudor%></td>
-                <td><%= totalAcreedor%></td>
-                <td><%= totalGastos%></td>
-                <td><%= totalIngresos%></td>
-                <td><%= totalActivo%></td>
-                <td><%= totalPasivo%></td>
+                <td><%= totalDeudor.toFixed(2);%></td>
+                <td><%= totalAcreedor.toFixed(2);%></td>
+                <td><%= totalGastos;%></td>
+                <td><%= totalIngresos.toFixed(2);%></td>
+                <td><%= totalActivo.toFixed(2);%></td>
+                <td><%= totalPasivo;%></td>
               </tr>
-              <tr>
+              <tr class="grey lighten-3">
                 <td></td>
                 <td rowspan="2"> UTILIDAD DEL PERIODO</td>
                 <td></td>
                 <td></td>
-                <td><%= (totalIngresos - totalGastos)%></td>
+                <td><%= (totalIngresos - totalGastos).toFixed(2);%></td>
                 <td></td>
                 <td></td>
-                <td><%= (totalActivo - totalPasivo)%></td>
+                <td><%= (totalActivo - totalPasivo).toFixed(2);%></td>
               </tr>
-              <tr>
+              <tr class="grey lighten-3">
                 <td></td>
  
                 <td></td>
                 <td></td>
-                <td><%= totalGastos + (totalIngresos - totalGastos)%></td>
-                <td><%= totalIngresos%></td>
-                <td><%= totalActivo%></td>
-                <td><%= totalPasivo + (totalActivo - totalPasivo) %></td>
+                <td><%= (totalGastos + (totalIngresos - totalGastos)).toFixed(2);%></td>
+                <td><%= totalIngresos.toFixed(2);%></td>
+                <td><%= totalActivo.toFixed(2);%></td>
+                <td><%= (totalPasivo + (totalActivo - totalPasivo)).toFixed(2); %></td>
               </tr>
           </tbody>
         </table>

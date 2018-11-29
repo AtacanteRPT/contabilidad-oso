@@ -1,0 +1,103 @@
+
+
+<div class="container">
+		<h5 class="center">Libro Diario</h5><br>
+		<h5 class="center"><%=empresa.nombre%></h5>
+		<h6 class="center"><%=empresa.nit%></h5>
+</div>
+
+<!-- }}}}}}}}}}}}}}}}}}}} -->
+<style>
+  table, th, td {
+      /* border: 1px solid black; */
+      border-collapse: collapse;
+      border-spacing: 0px;
+      padding: 0px;
+
+  }
+  </style>
+<table class="striped">
+	<thead>
+		<tr>
+			<th colspan="2">Fecha</th>
+			<th>Detalle</th>
+			<th>Código</th>
+			<th>Cuenta</th>
+			<th>DEBE</th>
+			<th>HABER</th>
+			<th </th>
+
+		</tr>
+	</thead>
+	<tbody>
+		<% librosDiario.forEach((libroDiario,i) =>{%>
+			<%  var fecha = new Date(libroDiario.fecha)%>
+				<tr>
+					<td colspan="2">
+						<%= fecha.toLocaleDateString() %>
+					</td>
+
+					<td>
+						<%= libroDiario.detalle %>
+					</td>
+					<td colspan="3"></td>
+					<td>
+
+					</td>
+					<td>
+
+					</td>
+
+				</tr>
+				<% libroDiario.asientos.forEach((asiento,j)=>{%>
+					<tr>
+						<td colspan="3"></td>
+						<td>
+							<%= asiento.idCuenta.codigo%>
+						</td>
+						<td>
+							<%= asiento.idCuenta.nombre%>
+						</td>
+						<td>
+							<%= asiento.debe%>
+						</td>
+						<td>
+							<%= asiento.haber%>
+						</td>
+
+						<td>
+							<!-- <a href="/librodiario/edit/<%= libroDiario.id %>">
+								<i class="small material-icons circle ">edit</i>
+							</a> -->
+						</td>
+					</tr>
+					<%})%>
+						<% })%>
+							<tr class=" blue-grey lighten-2">
+
+								<% var sumaDebe = 0%>
+									<% var sumaHaber = 0%>
+										<% librosDiario.forEach((libroDiario,i) =>{%>
+											<% libroDiario.asientos.forEach((asiento,j) =>{  %>
+												<% sumaDebe = sumaDebe + asiento.debe%>
+													<% sumaHaber = sumaHaber + asiento.haber%>
+														<%})%>
+															<%})%>
+																<td colspan="3"></td>
+																<td></td>
+																<td>TOTAL </td>
+																<td>
+																	<%= sumaDebe %>
+																</td>
+																<td>
+																	<%= sumaHaber%>
+																</td>
+																<td></td>
+							</tr>
+	</tbody>
+</table>
+
+
+
+<!--  -->
+<!-- <a href="/LibroDiario/create">New</a> -->

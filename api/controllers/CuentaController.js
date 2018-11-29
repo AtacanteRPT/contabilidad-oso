@@ -49,7 +49,7 @@ module.exports = {
       if (err) {
         return next(err);
       }
-      return res.redirect('/Cuenta/index');
+      return res.redirect('/plandecuenta/show/'+req.body.idPlanDeCuenta);
     });
   },
 

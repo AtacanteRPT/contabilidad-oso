@@ -129,7 +129,7 @@
           <a class="collection-item" href="/operacion/index">&emsp; Operaciones</a>
         </li>
         <li>
-          <a class="collection-item" href="/operacion/cuenta">&emsp; Cuentas</a>
+          <!-- <a class="collection-item" href="/operacion/cuenta">&emsp; Cuentas</a> -->
         </li>
       </ul>
     </li>
@@ -156,6 +156,7 @@
 
 <body>
 
+<% if(req.isAuthenticated()){%>
 
   <div class="row">
     <div class="col s12 m3">
@@ -167,9 +168,9 @@
     </div>
   </div>
 
-
-
-
+<%}else{%>
+<%- body %>
+<%}%>
   <!--
         Client-side Templates
         ========================

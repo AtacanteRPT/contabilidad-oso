@@ -1,4 +1,4 @@
-<h1>PlanDeCuenta</h1>
+<h4>Plan de cuentas del usuario</h4>
 
 
 <% if (empresas.length == 0) { %>
@@ -26,8 +26,8 @@
                 <th>id</th>
                 <th>nombre</th>
 
-                <th>created at</th>
-                <th>updated at</th>
+                <th>creado</th>
+                <th>actualizado</th>
                 <th colspan="3"></th>
               </thead>
 
@@ -44,19 +44,21 @@
                       <%= plan.nombre %>
                     </td>
                     <td>
-                      <%= plan.createdAt %>
+                            <%  var fecha = new Date(plan.updatedAt)%>
+              <%= fecha.toLocaleDateString()  %>
                     </td>
                     <td>
-                      <%= plan.updatedAt %>
+                            <%  var fecha = new Date(plan.updatedAt)%>
+              <%= fecha.toLocaleDateString()  %>
                     </td>
                     <td>
-                      <a href="/PlanDeCuenta/show/<%= plan.id %>">Show</a>
+                      <a href="/PlanDeCuenta/show/<%= plan.id %>"><i class="small material-icons circle ">visibility</i></a>
                     </td>
                     <td>
-                      <a href="/PlanDeCuenta/delete/<%= plan.id %>">Delete</a>
+                      <a href="/PlanDeCuenta/delete/<%= plan.id %>"><i class="small material-icons circle ">delete_forever</i></a>
                     </td>
                     <td>
-                      <a href="/PlanDeCuenta/edit/<%= plan.id %>">Edit</a>
+                      <a href="/PlanDeCuenta/edit/<%= plan.id %>"><i class="small material-icons circle ">settings</i></a>
                     </td>
                   </tr>
                   <% }) %>

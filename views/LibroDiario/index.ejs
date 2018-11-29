@@ -71,7 +71,7 @@
 	</div>
 	<div class="col s4">
 
-		<a class="waves-effect waves-light btn-small">
+		<a class="waves-effect waves-light btn-small" target="_blank" href="/balance/generarPdf/<%= idPlanDeCuenta%>">
 			<i class="material-icons right">picture_as_pdf
 			</i>PDF</a>
 		<a class="waves-effect waves-light btn-small">
@@ -160,10 +160,10 @@
 																<td></td>
 																<td>TOTAL </td>
 																<td>
-																	<%= sumaDebe %>
+																	<%= sumaDebe.toFixed(2); %>
 																</td>
 																<td>
-																	<%= sumaHaber%>
+																	<%= sumaHaber.toFixed(2);%>
 																</td>
 																<td></td>
 							</tr>

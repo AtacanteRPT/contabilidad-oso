@@ -4,6 +4,11 @@ $(document).ready(function () {
   $('.sidenav').sidenav();
   $('.modal').modal();
   $('select').formSelect();
+  // $('ul.tabs').tabs({
+  //   swipeable : true,
+  //   responsiveThreshold : Infinity
+  // });
+  // $(".carousel").css({ "height": "100%"});
   $('.datepicker').datepicker({ 
     firstDay: true, 
     format: 'yyyy-mm-dd',

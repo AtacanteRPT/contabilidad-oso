@@ -6,6 +6,9 @@
  */
 var json2xlsx = require('node-json-xlsx');
 var fs = require('fs')
+var path = require('path')
+var conversion = require("phantom-html-to-pdf")();
+
 
 module.exports = {
   index: function (req, res, next) {
@@ -206,11 +209,158 @@ module.exports = {
       return res.redirect('/LibroDiario/planCuenta/' + req.body.idPlanDeCuenta)
     });
   },
-  otra:function(req,res,next){
 
-    
-  }
-  ,
+  generarPdf: function (req, res) {
+    conversion({
+      // html: "<h1>Hello World</h1>" 
+      url: 'http://localhost:1337/balance/otra/' + req.param('id')
+    }
+
+      ,
+      function (err, pdf) {
+        var output = fs.createWriteStream(path.join(__dirname, '../.././assets/reportes/LibroDiario.pdf'))
+        console.log(pdf.logs);
+
+        console.log(pdf.numberOfPages);
+        // since pdf.stream is a node.js stream you can use it
+        // to save the pdf to a file (like in this example) or to
+        // respond an http request.
+        pdf.stream.pipe(output);
+        res.redirect('/reportes/LibroDiario.pdf')
+      });
+  },
+  otra: function (req, res, next) {
+
+    Cuenta.find({
+      idPlanDeCuenta: req.param('id')
+    }).populate('idOperacion').exec(function (err, datoCuentas) {
+      if (err) {
+        return res.serverError(err);
+      }
+
+      LibroDiario.find({ idPlanDeCuenta: req.param('id') }).sort('fecha ASC').populate('asientos').exec(function (err, datoLibroDiarios) {
+
+        var listaLibrosDiarios = []
+        async.forEach(datoLibroDiarios, function (auxLibroDiario, cb) {
+
+          var listaAsientos = []
+          async.forEach(auxLibroDiario.asientos, function (auxAsiento, cb2) {
+
+            Asiento.findOne(auxAsiento.id).populate('idCuenta').exec(function (err, datoPlanDeCuentas) {
+              if (err) return Error('Error');
+              listaAsientos.push(datoPlanDeCuentas)
+              cb2();
+            });
+
+          }, function (error) {
+            auxLibroDiario.asientos = listaAsientos;
+            listaLibrosDiarios.push(auxLibroDiario);
+            cb();
+          });
+
+        }, function (error) {
+          sails.log("DATOS_librosDiario", datoLibroDiarios)
+          // return res.view('librodiario/index', {
+          //   empresas: empresas,
+          //   cuentas: datoCuentas,
+          //   idPlanDeCuenta: req.param('id'),
+          //   librosDiario: listaLibrosDiarios
+          // });
+          PlanDeCuenta.find(req.param('id')).populate('idEmpresa').exec(function (err, datoPlan) {
+
+            sails.log("DatoPlan",datoPlan)
+            return res.view('reportes/librodiario',
+              {
+                layout: "layouts/reporte",
+                empresa: datoPlan[0].idEmpresa,
+                cuentas: datoCuentas,
+                idPlanDeCuenta: req.param('id'),
+                librosDiario: listaLibrosDiarios
+              })
+          })
+
+
+        });
+      })
+    });
+
+  },
+  generarPdfMayor: function (req, res) {
+    conversion({
+      // html: "<h1>Hello World</h1>" 
+      url: 'http://localhost:1337/balance/mayorReporte/' + req.param('id')
+    }
+
+      ,
+      function (err, pdf) {
+        var output = fs.createWriteStream(path.join(__dirname, '../.././assets/reportes/LibroMayor.pdf'))
+        console.log(pdf.logs);
+
+        console.log(pdf.numberOfPages);
+        // since pdf.stream is a node.js stream you can use it
+        // to save the pdf to a file (like in this example) or to
+        // respond an http request.
+        pdf.stream.pipe(output);
+        res.redirect('/reportes/LibroMayor.pdf')
+      });
+  },
+  mayorReporte: function (req, res, next) {
+
+    Cuenta.find({
+      idPlanDeCuenta: req.param('id')
+    }).populate('idOperacion').exec(function (err, datoCuentas) {
+      if (err) {
+        return res.serverError(err);
+      }
+
+      LibroDiario.find({ idPlanDeCuenta: req.param('id') }).sort('fecha ASC').populate('asientos').exec(function (err, datoLibroDiarios) {
+
+        var listaLibrosDiarios = []
+        async.forEach(datoLibroDiarios, function (auxLibroDiario, cb) {
+
+          var listaAsientos = []
+          async.forEach(auxLibroDiario.asientos, function (auxAsiento, cb2) {
+
+            Asiento.findOne(auxAsiento.id).populate('idCuenta').exec(function (err, datoPlanDeCuentas) {
+              if (err) return Error('Error');
+              listaAsientos.push(datoPlanDeCuentas)
+              cb2();
+            });
+
+          }, function (error) {
+            auxLibroDiario.asientos = listaAsientos;
+            listaLibrosDiarios.push(auxLibroDiario);
+            cb();
+          });
+
+        }, function (error) {
+          sails.log("DATOS_librosDiario", datoLibroDiarios)
+          // return res.view('librodiario/index', {
+          //   empresas: empresas,
+          //   cuentas: datoCuentas,
+          //   idPlanDeCuenta: req.param('id'),
+          //   librosDiario: listaLibrosDiarios
+          // });
+          PlanDeCuenta.find(req.param('id')).populate('idEmpresa').exec(function (err, datoPlan) {
+
+            sails.log("DatoPlan",datoPlan)
+            return res.view('reportes/libromayor',
+              {
+                layout: "layouts/reporte",
+                empresa: datoPlan[0].idEmpresa,
+                cuentas: datoCuentas,
+                idPlanDeCuenta: req.param('id'),
+                librosDiario: listaLibrosDiarios
+              })
+          })
+
+
+        });
+      })
+    });
+
+  },
+
   show: function (req, res, next) {
     LibroDiario.findOneById(req.param('id'), function Founded(err, value) {
       if (err) {
@@ -345,9 +495,9 @@ module.exports = {
   },
   excel: function (req, res, next) {
     var abc = {
-      nombre  : "ricardo",
-      paterno : "paucara",
-      materno : "torrez"
+      nombre: "ricardo",
+      paterno: "paucara",
+      materno: "torrez"
     }
     sails.log("ENtrando al FInal GENERANDO EXCEL")
     var xlsx = json2xlsx(abc);

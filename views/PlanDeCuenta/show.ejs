@@ -54,8 +54,11 @@
             </li>
 
             <% lOperacion.listaCuentas.forEach((cuenta,i)=>{%>
-              <li class="collection-item"><div><%= cuenta.codigo%> - <%= cuenta.nombre%><a href="/cuenta/delete/<%=cuenta.id%>" class="secondary-content"><i class="material-icons">delete_forever
-                </i></a></div></li>
+              <li class="collection-item"><div><%= cuenta.codigo%> - <%= cuenta.nombre%> <a href="/cuenta/delete/<%=cuenta.id%>" class="secondary-content"><i class="material-icons">delete_forever
+                </i></a>
+                <a class="secondary-content" href="/Cuenta/edit/<%= cuenta.id %>"> <i class="small material-icons circle ">edit</i></a>
+              </div>
+            </li>
             <% })%>
           </ul>
         </div>

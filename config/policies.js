@@ -17,18 +17,21 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
 
-  // PrincipalController: {
-  //   '*': ['AccesoPoliticaAlumno']
-  // },
-  // BalanceController: {
-  //   '*': ['AccesoPoliticaAlumno']
-  // },
-  // LibroDiarioController: {
-  //   '*': ['AccesoPoliticaAlumno']
-  // },
-  // LibroMayorController: {
-  //   '*': ['AccesoPoliticaAlumno']
-  // },
+  PrincipalController: {
+    '*': ['AccesoPoliticaAlumno']
+  },
+  BalanceController: {
+    '*': ['AccesoPoliticaAlumno']
+  },
+  LibroDiarioController: {
+    '*': ['AccesoPoliticaAlumno']
+  },
+  LibroMayorController: {
+    '*': ['AccesoPoliticaAlumno']
+  },
+  OperacionController:{
+    '*': ['AccesoPoliticaAlumno']
+  }
   // '*': true,
 
 };

@@ -107,6 +107,14 @@ module.exports.routes = {
   'GET /balance/update/:id': 'BalanceController.update',
   'GET /balance/delete/:id': 'BalanceController.delete',
   'GET /balance/show/:id': 'BalanceController.show',
+  'GET /balance/otra/:id': 'BalanceController.otra',
+
+
+
+  'GET /balance/generarPdf/:id': 'BalanceController.generarPdf',
+  'GET /balance/mayorReporte/:id': 'BalanceController.mayorReporte',
+  'GET /balance/generarPdfMayor/:id': 'BalanceController.generarPdfMayor',
+
   'GET /balance/planCuenta/:id': 'BalanceController.planCuenta',
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
